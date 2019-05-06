@@ -1,5 +1,4 @@
 package fr.upem.capcha.main;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -21,9 +20,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+
 public class Main {
 	
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
+	
+	/**
+	 *  1 - créer un algorithme qui choisit aléatoirement la catégorie selon la difficulté 
+	 *  2 - Récuppérer les images de la bonne catégorie avec un nombre aléatoire
+	 *  3 - Récuperérer des img random
+	 *  4 - Display les img
+	 *  5 - Action Utilisateur
+	 *	6 - validation, on regarde si les img font bien partie du bon package
+	 *	6 a) Good : " Message de validation "
+	 *	6 b) Mauvais : On retourne au 1 avec difficulté + 1
+	 */
 	
 	public static void main(String[] args) throws IOException {
 		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale
