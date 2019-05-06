@@ -26,13 +26,13 @@ public class Main {
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	
 	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame("Capcha"); // CrÃ©ation de la fenÃªtre principale
+		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale
 		
-		GridLayout layout = createLayout();  // CrÃ©ation d'un layout de type Grille avec 4 lignes et 3 colonnes
+		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
 		
 		frame.setLayout(layout);  // affection du layout dans la fenÃªtre.
-		frame.setSize(1024, 768); // dÃ©finition de la taille
-		frame.setResizable(false);  // On dÃ©finit la fenÃªtre comme non redimentionnable
+		frame.setSize(1024, 768); // définition de la taille
+		frame.setResizable(false);  // On définit la fenêtre comme non redimentionnable
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Lorsque l'on ferme la fenÃªtre on quitte le programme.
 		 
@@ -40,7 +40,7 @@ public class Main {
 		JButton okButton = createOkButton();
 
 		
-		frame.add(createLabelImage("centre ville.jpg")); //ajouter des composants Ã  la fenÃªtre
+		frame.add(createLabelImage("centre ville.jpg")); //ajouter des composants à  la fenêtre
 		frame.add(createLabelImage("le havre.jpg"));
 		frame.add(createLabelImage("panneau 70.jpg"));
 		frame.add(createLabelImage("panneaubleu-carre.jpeg"));
@@ -66,12 +66,12 @@ public class Main {
 	}
 	
 	private static JButton createOkButton(){
-		return new JButton(new AbstractAction("VÃ©rifier") { //ajouter l'action du bouton
+		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() { // faire des choses dans l'interface donc appeler cela dans la queue des Ã©vÃ¨nements
-					
+				EventQueue.invokeLater(new Runnable() { // l'interface donc appeler cela dans la queue des évènements
+				
 					@Override
 					public void run() { // c'est un runnable
 						System.out.println("J'ai cliquÃ© sur Ok");
@@ -90,9 +90,9 @@ public class Main {
 		BufferedImage img = ImageIO.read(url); //lire l'image
 		Image sImage = img.getScaledInstance(1024/3,768/4, Image.SCALE_SMOOTH); //redimentionner l'image
 		
-		final JLabel label = new JLabel(new ImageIcon(sImage)); // crÃ©er le composant pour ajouter l'image dans la fenÃªtre
+		final JLabel label = new JLabel(new ImageIcon(sImage)); // créer le composant pour ajouter l'image dans la fenÃªtre
 		
-		label.addMouseListener(new MouseListener() { //Ajouter le listener d'Ã©venement de souris
+		label.addMouseListener(new MouseListener() { //Ajouter le listener d'évenement de souris
 			private boolean isSelected = false;
 			
 			
