@@ -1,4 +1,4 @@
-package fr.upem.capcha.ui;
+package fr.upem.capcha.main;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -21,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-public class MainUi {
+public class Main {
 	
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	
@@ -83,7 +83,7 @@ public class MainUi {
 	
 	private static JLabel createLabelImage(String imageLocation) throws IOException{
 		
-		final URL url = MainUi.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
+		final URL url = Main.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
 		
 		System.out.println(url); 
 		
