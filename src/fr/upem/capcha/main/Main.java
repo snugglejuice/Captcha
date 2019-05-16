@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import fr.upem.capcha.images.vehicules.Vehicules;
+import fr.upem.capcha.images.Categories;
 
 import java.net.URL;
 import java.util.List;
@@ -40,61 +41,34 @@ public class Main {
 	 *  1 - créer un algorithme qui choisit aléatoirement la catégorie selon la difficulté 
 	 *  2 - Récuppérer les images de la bonne catégorie avec un nombre aléatoire
 	 *  3 - Récuperérer des img random
-	 *  4 - Display les img
+	 *  4 - Display les img 
 	 *  5 - Action Utilisateur
 	 *	6 - validation, on regarde si les img font bien partie du bon package
 	 *	6 a) Good : " Message de validation "
 	 *	6 b) Mauvais : On retourne au 1 avec difficulté + 1
 	 */
-	private static boolean contain(int[] arr, int number, int index) {
-		if (index == 0) return false;
-		for (int i = 0; i < index; i++) {
-			if (arr[i] == number) return true;
-		}
-		return false;
-	}
 	
 	public static void main(String[] args) throws IOException {
 		
-		Vehicules categorie1 = new Vehicules();
-		System.out.println(categorie1);
-		System.out.println(categorie1.isPhotoCorrect(categorie1.getRandomPhotosURL()));
-		System.out.println(categorie1.getRandomPhotosURL().getPath());
-		
-		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale
-				
+		CapchaManager test = new CapchaManager();
+		List<URL> selected = test.getSelectedPhoto();
+	
+		/*
+		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale	
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
-		
 		frame.setLayout(layout);  // affection du layout dans la fenÃªtre.
 		frame.setSize(1024, 768); // définition de la taille
 		frame.setResizable(false);  // On définit la fenêtre comme non redimentionnable
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Lorsque l'on ferme la fenÃªtre on quitte le programme.
-		 
-		
 		JButton okButton = createOkButton();
-
-		
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL())); //ajouter des composants à  la fenêtre
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
-		
-		
-		
-		frame.add(new JTextArea("Cliquez n'importe oÃ¹ ... juste pour tester l'interface !"));
-		
-		
+		 //ajouter des composants à  la fenêtre
+		for (int i = 0; i < selected.size(); i++) {
+			frame.add(createLabelImage(selected.get(i)));
+		}
+		frame.add(new JTextArea("Sélectionner tous les véhicules"));
 		frame.add(okButton);
-		
-		frame.setVisible(true);
+		frame.setVisible(true);*/
 		 
-	 
 	}
 	
 	

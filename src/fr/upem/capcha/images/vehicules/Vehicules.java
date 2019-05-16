@@ -1,12 +1,15 @@
 package fr.upem.capcha.images.vehicules;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-import fr.upem.capcha.images.Categories;
+
+import fr.upem.capcha.images.*;
 
 /**
  * Vehicules Class ( Categories )
@@ -15,7 +18,7 @@ import fr.upem.capcha.images.Categories;
  * 
  */
 
-public class Vehicules extends Categories {
+public class Vehicules extends Categories implements Images { 
 	
 
 	private List<URL> photoList;
@@ -75,7 +78,7 @@ public class Vehicules extends Categories {
 	private void fillPhotoList() {
 		this.photoList = new ArrayList<URL>();
 		for(String category : categoryList) {
-			for (int i = 1; i < 4; i++ ) {
+			for (int i = 1; i < 6; i++ ) {
 				photoList.add(Vehicules.class.getResource("../vehicules/" + category + "/" + category + i + ".jpg"));
 			}
 		}
@@ -104,7 +107,6 @@ public class Vehicules extends Categories {
 	public boolean subdirectories() {
 		return hasSubdirectories;
 	}
-	
 	
 	/**
 	 * 
@@ -162,5 +164,6 @@ public class Vehicules extends Categories {
 		}
 		return false;
 	}
+	
 	
 }
