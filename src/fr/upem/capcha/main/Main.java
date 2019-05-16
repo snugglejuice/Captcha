@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -19,6 +21,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
+import fr.upem.capcha.images.vehicules.Vehicules;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.io.File;
 
 
 public class Main {
@@ -35,10 +46,23 @@ public class Main {
 	 *	6 a) Good : " Message de validation "
 	 *	6 b) Mauvais : On retourne au 1 avec difficulté + 1
 	 */
+	private static boolean contain(int[] arr, int number, int index) {
+		if (index == 0) return false;
+		for (int i = 0; i < index; i++) {
+			if (arr[i] == number) return true;
+		}
+		return false;
+	}
 	
 	public static void main(String[] args) throws IOException {
-		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale
 		
+		Vehicules categorie1 = new Vehicules();
+		System.out.println(categorie1);
+		System.out.println(categorie1.isPhotoCorrect(categorie1.getRandomPhotosURL()));
+		System.out.println(categorie1.getRandomPhotosURL().getPath());
+		
+		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale
+				
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
 		
 		frame.setLayout(layout);  // affection du layout dans la fenÃªtre.
@@ -51,15 +75,15 @@ public class Main {
 		JButton okButton = createOkButton();
 
 		
-		frame.add(createLabelImage("centre ville.jpg")); //ajouter des composants à  la fenêtre
-		frame.add(createLabelImage("le havre.jpg"));
-		frame.add(createLabelImage("panneau 70.jpg"));
-		frame.add(createLabelImage("panneaubleu-carre.jpeg"));
-		frame.add(createLabelImage("parking.jpg"));
-		frame.add(createLabelImage("route panneau.jpg"));
-		frame.add(createLabelImage("tour eiffel.jpg"));
-		frame.add(createLabelImage("ville espace verts.jpg"));
-		frame.add(createLabelImage("voie pieton.jpg"));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL())); //ajouter des composants à  la fenêtre
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
 		
 		
 		
@@ -69,6 +93,8 @@ public class Main {
 		frame.add(okButton);
 		
 		frame.setVisible(true);
+		 
+	 
 	}
 	
 	
@@ -92,9 +118,9 @@ public class Main {
 		});
 	}
 	
-	private static JLabel createLabelImage(String imageLocation) throws IOException{
+	private static JLabel createLabelImage(URL url) throws IOException{
 		
-		final URL url = Main.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
+		//final URL url = Main.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
 		
 		System.out.println(url); 
 		
@@ -152,3 +178,7 @@ public class Main {
 		return label;
 	}
 }
+
+
+
+
