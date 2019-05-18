@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -23,14 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import fr.upem.capcha.images.vehicules.Vehicules;
-import fr.upem.capcha.images.Categories;
-
-import java.net.URL;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.io.File;
+import fr.upem.capcha.images.nourriture.Nourriture;
 
 
 public class Main {
@@ -38,37 +29,67 @@ public class Main {
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	
 	/**
-	 *  1 - créer un algorithme qui choisit aléatoirement la catégorie selon la difficulté 
-	 *  2 - Récuppérer les images de la bonne catégorie avec un nombre aléatoire
-	 *  3 - Récuperérer des img random
-	 *  4 - Display les img 
+	 *  1 - crï¿½er un algorithme qui choisit alï¿½atoirement la catï¿½gorie selon la difficultï¿½ 
+	 *  2 - Rï¿½cuppï¿½rer les images de la bonne catï¿½gorie avec un nombre alï¿½atoire
+	 *  3 - Rï¿½cuperï¿½rer des img random
+	 *  4 - Display les img
 	 *  5 - Action Utilisateur
 	 *	6 - validation, on regarde si les img font bien partie du bon package
 	 *	6 a) Good : " Message de validation "
-	 *	6 b) Mauvais : On retourne au 1 avec difficulté + 1
+	 *	6 b) Mauvais : On retourne au 1 avec difficultï¿½ + 1
 	 */
+	private static boolean contain(int[] arr, int number, int index) {
+		if (index == 0) return false;
+		for (int i = 0; i < index; i++) {
+			if (arr[i] == number) return true;
+		}
+		return false;
+	}
 	
 	public static void main(String[] args) throws IOException {
 		
-		CapchaManager test = new CapchaManager();
-		List<URL> selected = test.getSelectedPhoto();
-	
-		/*
-		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale	
-		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
+		Vehicules categorie1 = new Vehicules();
+		System.out.println(categorie1);
+		System.out.println(categorie1.isPhotoCorrect(categorie1.getRandomPhotosURL()));
+		System.out.println(categorie1.getRandomPhotosURL().getPath());
+		
+		Nourriture categorie2 = new Nourriture();
+		System.out.println(categorie2);
+		
+		JFrame frame = new JFrame("Capcha"); // Crï¿½ation de la fenï¿½tre principale
+				
+		GridLayout layout = createLayout();  // Crï¿½ation d'un layout de type Grille avec 4 lignes et 3 colonnes
+		
 		frame.setLayout(layout);  // affection du layout dans la fenÃªtre.
-		frame.setSize(1024, 768); // définition de la taille
-		frame.setResizable(false);  // On définit la fenêtre comme non redimentionnable
+		frame.setSize(1024, 768); // dï¿½finition de la taille
+		frame.setResizable(false);  // On dï¿½finit la fenï¿½tre comme non redimentionnable
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Lorsque l'on ferme la fenÃªtre on quitte le programme.
-		JButton okButton = createOkButton();
-		 //ajouter des composants à  la fenêtre
-		for (int i = 0; i < selected.size(); i++) {
-			frame.add(createLabelImage(selected.get(i)));
-		}
-		frame.add(new JTextArea("Sélectionner tous les véhicules"));
-		frame.add(okButton);
-		frame.setVisible(true);*/
 		 
+		
+		JButton okButton = createOkButton();
+
+		
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL())); //ajouter des composants ï¿½ la fenï¿½tre
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		frame.add(createLabelImage(categorie1.getRandomPhotosURL()));
+		
+		
+		
+		frame.add(new JTextArea("Cliquez n'importe oÃ¹ ... juste pour tester l'interface !"));
+		
+		
+		frame.add(okButton);
+		
+		frame.setVisible(true);
+		 
+	 
 	}
 	
 	
@@ -77,11 +98,11 @@ public class Main {
 	}
 	
 	private static JButton createOkButton(){
-		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
+		return new JButton(new AbstractAction("Vï¿½rifier") { //ajouter l'action du bouton
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() { // l'interface donc appeler cela dans la queue des évènements
+				EventQueue.invokeLater(new Runnable() { // l'interface donc appeler cela dans la queue des ï¿½vï¿½nements
 				
 					@Override
 					public void run() { // c'est un runnable
@@ -101,9 +122,9 @@ public class Main {
 		BufferedImage img = ImageIO.read(url); //lire l'image
 		Image sImage = img.getScaledInstance(1024/3,768/4, Image.SCALE_SMOOTH); //redimentionner l'image
 		
-		final JLabel label = new JLabel(new ImageIcon(sImage)); // créer le composant pour ajouter l'image dans la fenÃªtre
+		final JLabel label = new JLabel(new ImageIcon(sImage)); // crï¿½er le composant pour ajouter l'image dans la fenÃªtre
 		
-		label.addMouseListener(new MouseListener() { //Ajouter le listener d'évenement de souris
+		label.addMouseListener(new MouseListener() { //Ajouter le listener d'ï¿½venement de souris
 			private boolean isSelected = false;
 			
 			
