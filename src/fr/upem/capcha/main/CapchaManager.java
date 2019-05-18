@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 import fr.upem.capcha.images.*;
+import fr.upem.capcha.images.vehicules.Vehicules;
 
 public class CapchaManager {
 	
@@ -16,12 +17,26 @@ public class CapchaManager {
 		Categories categoryManager = new Categories();
 		categoryManager.initialize();
 		this.selectedCategorie = categoryManager.getRandomCategory();
-		
-		this.selectedPhoto = new ArrayList<URL>();
-		Random rand = new Random();
-		int nb = rand.nextInt(9) + 1;
-		System.out.println(nb);
-		selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+		if (selectedCategorie instanceof Vehicules) {
+			
+			selectedCategorie.initialize();
+			List<Categories> categoriesList = ((Vehicules) selectedCategorie).getSubCategoryList();
+			selectedCategorie = ((Vehicules) selectedCategorie).getRandomSubCategory();
+			categoriesList.remove(selectedCategorie);
+			System.out.println(categoriesList);
+			
+			this.selectedPhoto = new ArrayList<URL>();
+			Random rand = new Random();
+			int nb = rand.nextInt(5) + 1;
+			System.out.println(selectedCategorie);
+			selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+			
+			while (selectedPhoto.size() < 9) {
+				Random rand2 = new Random();
+				int n = rand2.nextInt(categoriesList.size());
+				selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+			}
+		}		
 	}
 	
 	public int getLevel() {

@@ -23,6 +23,10 @@ public class Categories implements Images {
 		return categoryNameList;
 	}
 	
+	public List<Categories> getCategoryList() {
+		return categoryList;
+	}
+	
 	/**
 	 * initialize allow to fill category list
 	 */
@@ -91,7 +95,8 @@ public class Categories implements Images {
 			}
 			
 			 if (this.getClass().isInstance(classObject)) {
-		         categoryList.add((Categories) classObject); // add to child categories
+		         categoryList.add((Categories) classObject);
+		         ((Categories) classObject).initialize();// add to child categories
 			 }
 		}
 		return;

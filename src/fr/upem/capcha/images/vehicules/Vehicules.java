@@ -23,6 +23,7 @@ public class Vehicules extends Categories implements Images {
 
 	private List<URL> photoList;
 	private List<String> categoryList;
+	private List<Categories> subCategoryList;
 	private boolean hasSubdirectories;
 	
 	
@@ -33,7 +34,21 @@ public class Vehicules extends Categories implements Images {
 	 */
 	public Vehicules() {
 		this.fillCategoryList();
+	}
+	
+	public void initialize() {
 		this.fillPhotoList();
+		this.fillSubCategoryList();
+	}
+	
+	public List<Categories> getSubCategoryList() {
+		return subCategoryList;
+	}
+	
+	public Categories getRandomSubCategory() {
+		Random rand = new Random();
+		int catNumber = rand.nextInt(subCategoryList.size());
+		return subCategoryList.get(catNumber);
 	}
 		
 	/**
@@ -84,15 +99,46 @@ public class Vehicules extends Categories implements Images {
 		}
 	}
 	
+	private void fillSubCategoryList() {
+		this.subCategoryList = new ArrayList<Categories>();
+		for (String str : categoryList) {
+			Object classObject = null;
+			String cap = str.substring(0, 1).toUpperCase() + str.substring(1);
+			try
+		    {
+		      classObject = Objects.requireNonNull(Class.forName("fr.upem.capcha.images.vehicules." + str + "." + cap).getDeclaredConstructor().newInstance());
+		    }
+		    catch (ClassNotFoundException e)
+		    {
+		      // La classe n'existe pas
+		    }
+		    catch (InstantiationException e)
+		    {
+		      // La classe est abstract ou est une interface ou n'a pas de constructeur accessible sans paramètre
+		    }
+		    catch (IllegalAccessException e)
+		    {
+		      // La classe n'est pas accessible
+		    }
+			catch (NoSuchMethodException e)
+			{
+				
+			}
+			catch (InvocationTargetException e)
+			{
+				
+			}
+			 if (this.getClass().isInstance(classObject)) {
+		         subCategoryList.add((Categories) classObject); // add to child categories
+			 }
+		}
+		return;
+	}
 	
 	@Override
 	public String toString() {
 		
-		return "this category contain " 
-				+ photoList.size() 
-				+ " pictures and " 
-				+ categoryList.size() 
-				+ " categories";
+		return this.getClass().getName();
 	}
 	
 	
@@ -119,7 +165,7 @@ public class Vehicules extends Categories implements Images {
 	 * return true if the number is contained
 	 * else false
 	 */
-	private boolean contain(int[] arr, int number, int index) {
+	public boolean contain(int[] arr, int number, int index) {
 		if (index == 0) return false;
 		for (int i = 0; i < index; i++) {
 			if (arr[i] == number) return true;

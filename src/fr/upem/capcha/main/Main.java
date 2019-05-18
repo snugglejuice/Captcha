@@ -50,10 +50,10 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-		CapchaManager test = new CapchaManager();
-		List<URL> selected = test.getSelectedPhoto();
-	
-		/*
+		CapchaManager c = new CapchaManager();
+		List<URL> selected = c.getSelectedPhoto();
+		
+		
 		JFrame frame = new JFrame("Capcha"); // Création de la fenêtre principale	
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
 		frame.setLayout(layout);  // affection du layout dans la fenÃªtre.
@@ -67,7 +67,7 @@ public class Main {
 		}
 		frame.add(new JTextArea("Sélectionner tous les véhicules"));
 		frame.add(okButton);
-		frame.setVisible(true);*/
+		frame.setVisible(true);
 		 
 	}
 	
