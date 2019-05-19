@@ -134,14 +134,7 @@ public class Vehicules extends Categories implements Images {
 		}
 		return;
 	}
-	
-	@Override
-	public String toString() {
 		
-		return this.getClass().getName();
-	}
-	
-	
 	public List<URL> getPhotos() {
 		return photoList;
 	}
@@ -209,6 +202,12 @@ public class Vehicules extends Categories implements Images {
 			if (photo.equals(img)) return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "véhicules";
 	}
 	
 	

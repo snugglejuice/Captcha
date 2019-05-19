@@ -139,6 +139,11 @@ public class Categories implements Images {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "catégories";
+	}
 	
 		
 } 

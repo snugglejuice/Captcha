@@ -60,4 +60,9 @@ private List<URL> photoList;
 		}
 		return false;
 	}
+	
+	@Override
+		public String toString() {
+			return "camions";
+		}
 }
