@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,17 +27,6 @@ import fr.upem.capcha.images.vehicules.Vehicules;
 import fr.upem.capcha.images.nourriture.Nourriture;
 import fr.upem.capcha.images.Categories;
 
-import java.net.URL;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.io.File;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Random;
-import fr.upem.capcha.images.*;
-import fr.upem.capcha.images.vehicules.Vehicules;
 
 public class CapchaManager {
 	
@@ -213,7 +201,6 @@ public class CapchaManager {
 						int nb_answer = 0;
 						int nb_given = 0;
 						for (URL img : selectedImages) {
-							System.out.println(img);
 							if (!selectedCategorie.isPhotoCorrect(img)) {
 								JOptionPane.showMessageDialog(null, "Vous n'avez pas sélectionné les bonnes images", "Information", JOptionPane.INFORMATION_MESSAGE);
 								nextLevel();
@@ -306,7 +293,6 @@ public class CapchaManager {
 	}
 	
 	public static void displayCaptcha() {
-		System.out.println(selectedPhoto);
 		frame.getContentPane().removeAll();
 		frame.repaint();
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
