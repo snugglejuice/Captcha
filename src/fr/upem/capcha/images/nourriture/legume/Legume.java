@@ -1,6 +1,7 @@
 package fr.upem.capcha.images.nourriture.legume;
 
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +9,12 @@ import java.util.Random;
 import fr.upem.capcha.images.vehicules.Vehicules;
 import fr.upem.capcha.images.nourriture.*;
 import fr.upem.capcha.images.*;
+
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
 
 public class Legume extends Nourriture implements Images{
 	private List<URL> photoList;

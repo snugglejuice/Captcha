@@ -7,9 +7,13 @@ import java.util.Objects;
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
 import fr.upem.capcha.images.*;
+
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
 
 /**
  * Vehicules Class ( Categories )

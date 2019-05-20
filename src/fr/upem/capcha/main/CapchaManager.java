@@ -27,7 +27,11 @@ import fr.upem.capcha.images.vehicules.Vehicules;
 import fr.upem.capcha.images.nourriture.Nourriture;
 import fr.upem.capcha.images.Categories;
 
-
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
 public class CapchaManager {
 	
 	private static Categories selectedCategorie;

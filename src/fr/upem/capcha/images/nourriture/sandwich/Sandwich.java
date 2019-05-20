@@ -10,6 +10,11 @@ import fr.upem.capcha.images.vehicules.Vehicules;
 import fr.upem.capcha.images.nourriture.*;
 import fr.upem.capcha.images.*;
 
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
 
 public class Sandwich extends Nourriture implements Images{
 	private List<URL> photoList;

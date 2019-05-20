@@ -7,6 +7,12 @@ import java.net.URL;
 import java.util.Random;
 import java.lang.reflect.*;
 
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
+
 public class Categories implements Images {  
 	
 	private List<Categories> categoryList;

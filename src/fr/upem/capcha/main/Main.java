@@ -2,7 +2,11 @@ package fr.upem.capcha.main;
 
 import java.io.IOException;
 
-
+/**
+ * @author SEBAOUN Manon 
+ * @author SEMINEL Marion
+ *
+ */
 
 public class Main {
 	
