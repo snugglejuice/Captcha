@@ -1,5 +1,5 @@
-# Captcha
-Projet IMAC 2 Java
+# Captcha Images
+Projet IMAC 2 de Java : Créer un captcha 
 
 # Pour exécuter : 
 ```
