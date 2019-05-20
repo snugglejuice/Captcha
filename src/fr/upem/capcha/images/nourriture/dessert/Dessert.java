@@ -1,5 +1,5 @@
-package fr.upem.capcha.images.vehicules.camion;
-
+package fr.upem.capcha.images.nourriture.dessert;
+import fr.upem.capcha.images.nourriture.*;
 import fr.upem.capcha.images.vehicules.Vehicules;
 
 import java.net.URL;
@@ -9,7 +9,8 @@ import java.util.Random;
 
 import fr.upem.capcha.images.*;
 
-public class Camion extends Vehicules implements Images{
+public class Dessert extends Nourriture implements Images{
+	
 	private List<URL> photoList;
 	private boolean hasSubdirectories;
 	
@@ -17,7 +18,7 @@ public class Camion extends Vehicules implements Images{
 		return hasSubdirectories;
 	}
 	
-	public Camion() {
+	public Dessert() {
 		this.fillPhotoList();
 		hasSubdirectories = false;
 	}
@@ -25,7 +26,7 @@ public class Camion extends Vehicules implements Images{
 	private void fillPhotoList() {
 		this.photoList = new ArrayList<URL>();
 		for (int i = 1; i < 6; i++ ) {
-			photoList.add(Vehicules.class.getResource("../vehicules/Camion/camion"+ i + ".jpg"));
+			photoList.add(Vehicules.class.getResource("../nourriture/Dessert/dessert"+ i + ".jpg"));
 		}	
 	}
 	
@@ -33,8 +34,6 @@ public class Camion extends Vehicules implements Images{
 	public List<URL> getPhotos() {
 		return photoList;
 	}
-	
-	
 	
 	public List<URL> getRandomPhotosURL(int n) {
 		if (n > photoList.size()-1) throw new IllegalArgumentException("n must be < " + photoList.size());
@@ -70,7 +69,7 @@ public class Camion extends Vehicules implements Images{
 	}
 	
 	@Override
-		public String toString() {
-			return "camions";
-		}
+	public String toString() {
+		return "dessert";
+	}
 }

@@ -11,6 +11,7 @@ public class Categories implements Images {
 	
 	private List<Categories> categoryList;
 	private List<String> categoryNameList;
+	private boolean hasSubdirectories;
 	
 	/**
 	 *  Categories Constructor
@@ -27,11 +28,16 @@ public class Categories implements Images {
 		return categoryList;
 	}
 	
+	public boolean hasSubdirectories() {
+		return hasSubdirectories;
+	}
+	
 	/**
 	 * initialize allow to fill category list
 	 */
 	public void initialize() {
 		this.fillCategoryList();
+		hasSubdirectories = true;
 		
 	}
 	

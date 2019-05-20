@@ -10,10 +10,12 @@ import java.util.Random;
 import fr.upem.capcha.images.*;
 
 public class Moto extends Vehicules implements Images{
-private List<URL> photoList;
+	private List<URL> photoList;
+	private boolean hasSubdirectories;
 	
 	public Moto() {
 		this.fillPhotoList();
+		hasSubdirectories = false;
 	}
 	
 	private void fillPhotoList() {
@@ -26,6 +28,10 @@ private List<URL> photoList;
 	@Override
 	public List<URL> getPhotos() {
 		return photoList;
+	}
+	
+	public boolean hasSubdirectories() {
+		return hasSubdirectories;
 	}
 	
 	public List<URL> getRandomPhotosURL(int n) {

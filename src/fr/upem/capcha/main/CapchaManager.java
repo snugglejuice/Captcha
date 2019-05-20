@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import fr.upem.capcha.images.vehicules.Vehicules;
+import fr.upem.capcha.images.nourriture.Nourriture;
 import fr.upem.capcha.images.Categories;
 
 import java.net.URL;
@@ -55,35 +56,8 @@ public class CapchaManager {
 		if (selectedCategorie instanceof Vehicules) {
 			
 			selectedCategorie.initialize();
-			List<Categories> categoriesList = ((Vehicules) selectedCategorie).getSubCategoryList();
-			selectedCategorie = ((Vehicules) selectedCategorie).getRandomSubCategory();
-			categoriesList.remove(selectedCategorie);
-			
-			selectedPhoto = new ArrayList<URL>();
-			Random rand = new Random();
-			int nb = rand.nextInt(4) + 1;
-			selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
-			
-			while (selectedPhoto.size() < 9) {
-				Random rand2 = new Random();
-				int n = rand2.nextInt(categoriesList.size());
-				selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
-			}
-		}		
-	}
-	
-	public static void initialize() {
-		selectedImages = new ArrayList<URL>();
-		level = 1;
-		Categories categoryManager = new Categories();
-		categoryManager.initialize();
-		selectedCategorie = categoryManager.getRandomCategory();
-		if (selectedCategorie instanceof Vehicules) {
-			
-			selectedCategorie.initialize();
-			List<Categories> categoriesList = ((Vehicules) selectedCategorie).getSubCategoryList();
-			selectedCategorie = ((Vehicules) selectedCategorie).getRandomSubCategory();
-			categoriesList.remove(selectedCategorie);
+			List<Categories> categoriesList = categoryManager.getCategoryList();
+			categoriesList.remove(selectedCategorie); 
 			
 			selectedPhoto = new ArrayList<URL>();
 			Random rand = new Random();
@@ -96,7 +70,119 @@ public class CapchaManager {
 				selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
 			}
 		}
-		displayCaptcha();
+		
+		if (selectedCategorie instanceof Nourriture) {
+			
+			
+			selectedCategorie.initialize();
+			List<Categories> categoriesList = categoryManager.getCategoryList();
+			categoriesList.remove(selectedCategorie); 
+			
+			selectedPhoto = new ArrayList<URL>();
+			Random rand = new Random();
+			int nb = rand.nextInt(4) + 1;
+			selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+			
+			while (selectedPhoto.size() < 9) {
+				Random rand2 = new Random();
+				int n = rand2.nextInt(categoriesList.size());
+				selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+			}
+		}
+	}
+	
+	public static void nextLevel() {
+		selectedImages = new ArrayList<URL>();
+		level += 1;
+		
+		if (selectedCategorie.hasSubdirectories()) {
+			if (selectedCategorie instanceof Vehicules) {
+				
+				selectedCategorie.initialize();
+				List<Categories> categoriesList = ((Vehicules) selectedCategorie).getSubCategoryList();
+				selectedCategorie = ((Vehicules) selectedCategorie).getRandomSubCategory();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9) {
+					Random rand2 = new Random();
+					int n = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+				}
+			}
+			
+			if (selectedCategorie instanceof Nourriture) {
+				
+				
+				selectedCategorie.initialize();
+				List<Categories> categoriesList = ((Nourriture) selectedCategorie).getSubCategoryList();
+				selectedCategorie = ((Nourriture) selectedCategorie).getRandomSubCategory();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9) {
+					Random rand2 = new Random();
+					int n = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+				}
+			}
+			displayCaptcha();
+			return;
+		}
+		
+		else {
+			if (selectedCategorie instanceof Vehicules) {
+				Vehicules v = new Vehicules();
+				v.initialize();
+				List<Categories> categoriesList = ((Vehicules) v).getSubCategoryList();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9 + level) {
+					Random rand2 = new Random();
+					int n = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+				}
+				
+				displayCaptcha();
+				return;
+			}
+			
+			if (selectedCategorie instanceof Nourriture) {
+				Nourriture n = new Nourriture();
+				n.initialize();
+				List<Categories> categoriesList = ((Nourriture) n).getSubCategoryList();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9 + level) {
+					Random rand2 = new Random();
+					int nb2 = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(nb2).getRandomPhotosURL());
+				}
+				
+				displayCaptcha();
+				return;
+			}
+			
+			
+		}
 	}
 	
 	public int getLevel() {
@@ -124,16 +210,13 @@ public class CapchaManager {
 				
 					@Override
 					public void run() { // c'est un runnable
-						System.out.println(selectedCategorie);
 						int nb_answer = 0;
 						int nb_given = 0;
 						for (URL img : selectedImages) {
 							System.out.println(img);
 							if (!selectedCategorie.isPhotoCorrect(img)) {
-								System.out.println("try again");
-								level = 2;
 								JOptionPane.showMessageDialog(null, "Vous n'avez pas sélectionné les bonnes images", "Information", JOptionPane.INFORMATION_MESSAGE);
-								initialize();
+								nextLevel();
 								return;
 							}
 							else {
@@ -152,7 +235,11 @@ public class CapchaManager {
 							return;
 						}
 						
-						System.out.println("ICI");
+						else {
+							JOptionPane.showMessageDialog(null, "Vous n'avez pas sélectionné les bonnes images", "Information", JOptionPane.INFORMATION_MESSAGE);
+							nextLevel();
+							return;
+						}
 						
 					}
 				});
@@ -163,8 +250,6 @@ public class CapchaManager {
 	private static JLabel createLabelImage(URL url) throws IOException{
 		
 		//final URL url = Main.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
-		
-		System.out.println(url); 
 		
 		BufferedImage img = ImageIO.read(url); //lire l'image
 		Image sImage = img.getScaledInstance(1024/3,768/4, Image.SCALE_SMOOTH); //redimentionner l'image
@@ -204,7 +289,6 @@ public class CapchaManager {
 							label.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
 							isSelected = true;
 							selectedImages.add(url);
-							System.out.println(url);
 						}
 						else {
 							label.setBorder(BorderFactory.createEmptyBorder());
@@ -221,7 +305,8 @@ public class CapchaManager {
 		return label;
 	}
 	
-	public static void displayCaptcha() {	
+	public static void displayCaptcha() {
+		System.out.println(selectedPhoto);
 		frame.getContentPane().removeAll();
 		frame.repaint();
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
@@ -239,7 +324,7 @@ public class CapchaManager {
 				
 			}
 		}
-		frame.add(new JTextArea("Veuillez séllectionner les images qui contiennent des " + selectedCategorie.toString()));
+		frame.add(new JTextArea("Veuillez séllectionner les images qui contiennent des \n" + selectedCategorie.toString()));
 		frame.add(okButton);
 		frame.setVisible(true);
 	}

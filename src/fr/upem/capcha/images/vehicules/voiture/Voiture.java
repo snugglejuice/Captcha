@@ -11,9 +11,11 @@ import fr.upem.capcha.images.*;
 
 public class Voiture extends Vehicules implements Images{
 	private List<URL> photoList;
+	private boolean hasSubdirectories;
 	
 	public Voiture() {
 		this.fillPhotoList();
+		hasSubdirectories = false;
 	}
 	
 	private void fillPhotoList() {
@@ -26,6 +28,10 @@ public class Voiture extends Vehicules implements Images{
 	@Override
 	public List<URL> getPhotos() {
 		return photoList;
+	}
+	
+	public boolean hasSubdirectories() {
+		return hasSubdirectories;
 	}
 	
 	public List<URL> getRandomPhotosURL(int n) {
@@ -61,7 +67,11 @@ public class Voiture extends Vehicules implements Images{
 		return false;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "voitures";
+	}
 	
 	
 	

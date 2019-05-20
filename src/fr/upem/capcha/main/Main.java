@@ -1,5 +1,6 @@
 package fr.upem.capcha.main;
 import java.awt.Color;
+import fr.upem.capcha.images.vehicules.camion.*;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -31,8 +32,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.io.File;
-
-
+import fr.upem.capcha.images.nourriture.*;
+import fr.upem.capcha.images.vehicules.moto.*;
 public class Main {
 	
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
@@ -51,12 +52,14 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		CapchaManager c = new CapchaManager();
-		List<URL> selected = c.getSelectedPhoto();
-		System.out.println(selected.get(0));
-		System.out.println(c.getSelectedCategorie().isPhotoCorrect(selected.get(0)));
+		c.displayCaptcha();
 		
-		CapchaManager.displayCaptcha();
+		/*Camion m = new Camion();
+		Vehicules v = new Vehicules();
+		v.initialize();
+		System.out.println(v.isPhotoCorrect(m.getPhotos().get(4)));*/
 		
+	
 		 
 	}
 }

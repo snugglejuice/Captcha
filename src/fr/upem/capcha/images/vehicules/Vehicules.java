@@ -93,8 +93,9 @@ public class Vehicules extends Categories implements Images {
 	private void fillPhotoList() {
 		this.photoList = new ArrayList<URL>();
 		for(String category : categoryList) {
+			String cap = category.substring(0, 1).toUpperCase() + category.substring(1);
 			for (int i = 1; i < 6; i++ ) {
-				photoList.add(Vehicules.class.getResource("../vehicules/" + category + "/" + category + i + ".jpg"));
+				photoList.add(Vehicules.class.getResource("../vehicules/" + cap + "/" + category + i + ".jpg"));
 			}
 		}
 	}
@@ -129,7 +130,7 @@ public class Vehicules extends Categories implements Images {
 				
 			}
 			 if (this.getClass().isInstance(classObject)) {
-		         subCategoryList.add((Categories) classObject); // add to child categories
+		         subCategoryList.add((Categories) classObject);
 			 }
 		}
 		return;
@@ -143,7 +144,7 @@ public class Vehicules extends Categories implements Images {
 		return categoryList;
 	}
 	
-	public boolean subdirectories() {
+	public boolean hasSubdirectories() {
 		return hasSubdirectories;
 	}
 	
