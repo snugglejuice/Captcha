@@ -3,5 +3,5 @@ Projet IMAC 2 de Java : Créer un captcha
 
 # Pour exécuter : 
 ```
-java -cp src fr.upem.captcha.main.Main
+java -cp src fr.upem.capcha.main.Main
 ```
