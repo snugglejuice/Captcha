@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.io.File;
 import java.net.URL;
 import java.util.Random;
+
+
 import java.lang.reflect.*;
 
 /**
@@ -15,6 +17,8 @@ import java.lang.reflect.*;
 
 public class Categories implements Images {  
 	
+	
+	private List<URL> photoList;
 	private List<Categories> categoryList;
 	private List<String> categoryNameList;
 	private boolean hasSubdirectories;
@@ -43,7 +47,13 @@ public class Categories implements Images {
 	 */
 	public void initialize() {
 		this.fillCategoryList();
-		hasSubdirectories = true;
+		if (!categoryList.isEmpty()) {
+			hasSubdirectories = true;
+		}
+		else {
+			hasSubdirectories = false;
+			this.fillPhotoList();
+		}
 		
 	}
 	
@@ -55,7 +65,7 @@ public class Categories implements Images {
 	 * 
 	 */
 	private void fillCategoryNameList() {
-		File directory = new File(Categories.class.getResource("../Images").getPath());
+		File directory = new File(this.getClass().getResource(".").getPath());
         //get all the files from a directory
         File[] fList = directory.listFiles();
         this.categoryNameList = new ArrayList<String>();
@@ -66,6 +76,20 @@ public class Categories implements Images {
         		}
         	} 
         }
+	}
+	
+	private void fillPhotoList() {
+		if (hasSubdirectories) {
+			return;
+		}
+		else {
+			this.photoList = new ArrayList<URL>();
+			String cap = this.getClass().getSimpleName().substring(0, 1).toLowerCase() + this.getClass().getSimpleName().substring(1);
+			for (int i = 1; i < 6; i++ ) {
+				photoList.add(this.getClass().getResource("./" + cap + i + ".jpg"));
+			}	
+			
+		}
 	}
 	
 	/**
@@ -82,7 +106,7 @@ public class Categories implements Images {
 			String cap = str.substring(0, 1).toUpperCase() + str.substring(1);
 			try
 		    {
-		      classObject = Objects.requireNonNull(Class.forName("fr.upem.capcha.images." + str + "." + cap).getDeclaredConstructor().newInstance());
+		      classObject = Objects.requireNonNull(Class.forName(this.getClass().getPackageName() + "." + str + "." + cap).getDeclaredConstructor().newInstance());
 		      
 		    }
 		    catch (ClassNotFoundException e)
@@ -116,6 +140,11 @@ public class Categories implements Images {
 	
 	
 	public URL getRandomPhotosURL() {
+		if (!hasSubdirectories) {
+			Random r = new Random();
+			int indexPicture = r.nextInt(photoList.size());
+			return this.getPhotos().get(indexPicture);
+		}
 		Random rand = new Random();
 		int catNumber = rand.nextInt(categoryList.size());
 		return categoryList.get(catNumber).getRandomPhotosURL();
@@ -144,17 +173,38 @@ public class Categories implements Images {
 	}
 	
 	public List<URL> getPhotos() {
-		return new ArrayList<URL>();
+		return photoList;
 	}
 	
 	public boolean isPhotoCorrect(URL img) {
-		return true;
+		if (!hasSubdirectories) {
+			for (URL photo : photoList) {
+				if (photo.equals(img)) return true;
+			}
+			return false;
+		}
+		else {
+			for (Categories c : categoryList) {
+				if (c.isPhotoCorrect(img) == true ) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	public boolean contain(int[] arr, int number, int index) {
+		if (index == 0) return false;
+		for (int i = 0; i < index; i++) {
+			if (arr[i] == number) return true;
+		}
+		return false;
 	}
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "catégories";
+		return this.getClass().getSimpleName();
 	}
 	
 		

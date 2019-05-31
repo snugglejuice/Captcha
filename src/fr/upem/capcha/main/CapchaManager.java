@@ -45,6 +45,7 @@ public class CapchaManager {
 		Categories categoryManager = new Categories();
 		categoryManager.initialize();
 		selectedCategorie = categoryManager.getRandomCategory();
+		selectedCategorie.initialize();
 		if (selectedCategorie instanceof Vehicules) {
 			
 			selectedCategorie.initialize();
@@ -91,8 +92,8 @@ public class CapchaManager {
 			if (selectedCategorie instanceof Vehicules) {
 				
 				selectedCategorie.initialize();
-				List<Categories> categoriesList = ((Vehicules) selectedCategorie).getSubCategoryList();
-				selectedCategorie = ((Vehicules) selectedCategorie).getRandomSubCategory();
+				List<Categories> categoriesList = ((Vehicules) selectedCategorie).getCategoryList();
+				selectedCategorie = ((Vehicules) selectedCategorie).getRandomCategory();
 				categoriesList.remove(selectedCategorie);
 				
 				selectedPhoto = new ArrayList<URL>();
@@ -111,8 +112,8 @@ public class CapchaManager {
 				
 				
 				selectedCategorie.initialize();
-				List<Categories> categoriesList = ((Nourriture) selectedCategorie).getSubCategoryList();
-				selectedCategorie = ((Nourriture) selectedCategorie).getRandomSubCategory();
+				List<Categories> categoriesList = ((Nourriture) selectedCategorie).getCategoryList();
+				selectedCategorie = ((Nourriture) selectedCategorie).getRandomCategory();
 				categoriesList.remove(selectedCategorie);
 				
 				selectedPhoto = new ArrayList<URL>();
@@ -134,7 +135,7 @@ public class CapchaManager {
 			if (selectedCategorie instanceof Vehicules) {
 				Vehicules v = new Vehicules();
 				v.initialize();
-				List<Categories> categoriesList = ((Vehicules) v).getSubCategoryList();
+				List<Categories> categoriesList = ((Vehicules) v).getCategoryList();
 				categoriesList.remove(selectedCategorie);
 				
 				selectedPhoto = new ArrayList<URL>();
@@ -155,7 +156,7 @@ public class CapchaManager {
 			if (selectedCategorie instanceof Nourriture) {
 				Nourriture n = new Nourriture();
 				n.initialize();
-				List<Categories> categoriesList = ((Nourriture) n).getSubCategoryList();
+				List<Categories> categoriesList = ((Nourriture) n).getCategoryList();
 				categoriesList.remove(selectedCategorie);
 				
 				selectedPhoto = new ArrayList<URL>();

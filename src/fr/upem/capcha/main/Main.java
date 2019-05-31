@@ -14,7 +14,8 @@ public class Main {
 		
 		@SuppressWarnings("unused")
 		CapchaManager c = new CapchaManager();
-		CapchaManager.displayCaptcha(); 
+		CapchaManager.displayCaptcha();
+		
 	}
 }
 
