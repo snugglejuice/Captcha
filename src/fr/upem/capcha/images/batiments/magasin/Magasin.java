@@ -9,6 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Magasin class (subcategory)
+ * 
+ * Inherits Batiments
+ * @see Categories
+ */
 public class Magasin extends Batiments implements Images{
 
 	public Magasin() {

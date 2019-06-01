@@ -9,6 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Eglise class (subcategory)
+ * 
+ * Inherits Batiments
+ * @see Categories
+ */
 public class Eglise extends Batiments implements Images{
 
 	public Eglise() {

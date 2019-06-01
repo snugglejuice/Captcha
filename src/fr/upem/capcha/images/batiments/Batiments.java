@@ -11,7 +11,8 @@ import fr.upem.capcha.images.*;
 /**
  * Batiments Class ( Categories )
  * 
- * 
+ * Inherits Categories
+ * @see Categories
  * 
  */
 

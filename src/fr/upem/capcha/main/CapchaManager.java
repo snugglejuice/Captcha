@@ -42,6 +42,12 @@ public class CapchaManager {
 	private static int level;
 	private static JFrame frame = new JFrame("Capcha");
 	
+	/**
+	 * Constructor of CapchaManager
+	 * Initialize to level 1 and select randomly one category
+	 * Then, select a random number of photos of this category (between 1 and 4)
+	 * Complete the captcha with pictures of others categories
+	 */
 	public CapchaManager() {
 		level = 1;
 		Categories categoryManager = new Categories();
@@ -122,10 +128,18 @@ public class CapchaManager {
 		}
 	}
 	
+	/**
+	 * Generate a new level of difficulty
+	 * Select a subcategory and a random number of pictures from the subcategory
+	 */
 	public static void nextLevel() {
 		selectedImages = new ArrayList<URL>();
 		level += 1;
 		
+		/**
+		 * Check if the selected category has subdirectories
+		 * Then, select a subcategory
+		 */
 		if (selectedCategorie.hasSubdirectories()) {
 			if (selectedCategorie instanceof Vehicules) {
 				
@@ -152,6 +166,46 @@ public class CapchaManager {
 				selectedCategorie.initialize();
 				List<Categories> categoriesList = ((Nourriture) selectedCategorie).getCategoryList();
 				selectedCategorie = ((Nourriture) selectedCategorie).getRandomCategory();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9) {
+					Random rand2 = new Random();
+					int n = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+				}
+			}
+			
+			if (selectedCategorie instanceof Batiments) {
+				
+				
+				selectedCategorie.initialize();
+				List<Categories> categoriesList = ((Batiments) selectedCategorie).getCategoryList();
+				selectedCategorie = ((Batiments) selectedCategorie).getRandomCategory();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9) {
+					Random rand2 = new Random();
+					int n = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(n).getRandomPhotosURL());
+				}
+			}
+			
+			if (selectedCategorie instanceof Panneaux) {
+				
+				
+				selectedCategorie.initialize();
+				List<Categories> categoriesList = ((Panneaux) selectedCategorie).getCategoryList();
+				selectedCategorie = ((Panneaux) selectedCategorie).getRandomCategory();
 				categoriesList.remove(selectedCategorie);
 				
 				selectedPhoto = new ArrayList<URL>();
@@ -206,32 +260,92 @@ public class CapchaManager {
 					Random rand2 = new Random();
 					int nb2 = rand2.nextInt(categoriesList.size());
 					selectedPhoto.add(categoriesList.get(nb2).getRandomPhotosURL());
-				}
+				}	
 				
 				displayCaptcha();
 				return;
 			}
 			
+			if (selectedCategorie instanceof Batiments) {
+				Batiments b = new Batiments();
+				b.initialize();
+				List<Categories> categoriesList = ((Batiments) b).getCategoryList();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9 + level) {
+					Random rand2 = new Random();
+					int nb2 = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(nb2).getRandomPhotosURL());
+				}	
+				
+				displayCaptcha();
+				return;
+			}
 			
+			if (selectedCategorie instanceof Panneaux) {
+				Panneaux p = new Panneaux();
+				p.initialize();
+				List<Categories> categoriesList = ((Panneaux) p).getCategoryList();
+				categoriesList.remove(selectedCategorie);
+				
+				selectedPhoto = new ArrayList<URL>();
+				Random rand = new Random();
+				int nb = rand.nextInt(4) + 1;
+				selectedPhoto = selectedCategorie.getRandomPhotosURL(nb);
+				
+				while (selectedPhoto.size() < 9 + level) {
+					Random rand2 = new Random();
+					int nb2 = rand2.nextInt(categoriesList.size());
+					selectedPhoto.add(categoriesList.get(nb2).getRandomPhotosURL());
+				}	
+				
+				displayCaptcha();
+				return;
+			}
 		}
 	}
 	
+	/**
+	 * @return the actual level
+	 */
 	public int getLevel() {
 		return level;
 	}
 	
+	/**
+	 * @return the category selected
+	 */
 	public Categories getSelectedCategorie() {
 		return selectedCategorie;
 	}
 	
+	/**
+	 * @return the photo selected
+	 */
 	public List<URL> getSelectedPhoto() {
 		return selectedPhoto;
 	}
 	
+	/**
+	 * Create a grid with 4 rows and 3 columns
+	 * @return a layout with 4 rows and 3 columns
+	 */
 	private static GridLayout createLayout(){
 		return new GridLayout(4,3);
 	}
 	
+	/**
+	 * Create a JButton
+	 * React according to what the user select
+	 * If the user selects all the good answers, a message is displayed and the window is closed - end of the program
+	 * Else, the level increases (+1)
+	 * @return
+	 */
 	private  static JButton createOkButton(){
 		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
 			
@@ -278,6 +392,15 @@ public class CapchaManager {
 		});
 	}
 	
+	/**
+	 * Create a label for a photo
+	 * Detect if the user clicked on the photo
+	 * 
+	 * @param url
+	 * 	the url of the photo
+	 * @return a JLabel
+	 * @throws IOException
+	 */
 	private static JLabel createLabelImage(URL url) throws IOException{
 		
 		//final URL url = Main.class.getResource(imageLocation); //Aller chercher les images !! IMPORTANT 
@@ -290,7 +413,9 @@ public class CapchaManager {
 		label.addMouseListener(new MouseListener() { //Ajouter le listener d'événement de souris
 			private boolean isSelected = false;
 			
-			
+			/**
+			 * Events of the mouse
+			 */
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 			}
@@ -313,7 +438,9 @@ public class CapchaManager {
 			@Override
 			public void mouseClicked(MouseEvent arg0) { //ce qui nous intéresse c'est lorsqu'on clique sur une image, il y a donc des choses à faire ici
 				EventQueue.invokeLater(new Runnable() { 
-					
+					/**
+					 * If the user clicks on an unselected photo, a red border appears
+					 */
 					@Override
 					public void run() {
 						if(!isSelected){
@@ -321,6 +448,9 @@ public class CapchaManager {
 							isSelected = true;
 							selectedImages.add(url);
 						}
+						/**
+						 * If the user clicks on a selected photo, the red border disappears
+						 */
 						else {
 							label.setBorder(BorderFactory.createEmptyBorder());
 							isSelected = false;
@@ -336,6 +466,10 @@ public class CapchaManager {
 		return label;
 	}
 	
+	/**
+	 * Display the captcha with photos, the button and what the user has to select
+	 * Size is 1024*768 px, window no resizable
+	 */
 	public static void displayCaptcha() {
 		frame.getContentPane().removeAll();
 		frame.repaint();

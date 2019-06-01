@@ -9,6 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Rond class (subcategory)
+ * 
+ * Inherits Panneaux
+ * @see Categories
+ */
 public class Rond extends Panneaux implements Images{
 
 	public Rond() {

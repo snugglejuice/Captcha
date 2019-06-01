@@ -9,6 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Pates class (subcategory)
+ * 
+ * Inherits Nourriture
+ * @see Categories
+ */
 public class Pates extends Nourriture implements Images{
 	
 	public Pates() {

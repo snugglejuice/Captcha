@@ -9,6 +9,14 @@ import fr.upem.capcha.images.*;
  *
  */
 
+
+/**
+ * Voiture Class (subcategory)
+ * 
+ * Inherits Vehicules
+ * @see Categories
+ * 
+ */
 public class Voiture extends Vehicules implements Images{
 	
 	

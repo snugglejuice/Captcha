@@ -11,7 +11,8 @@ import fr.upem.capcha.images.*;
 /**
  * Vehicules Class ( Categories )
  * 
- * 
+ * Inherits Categories
+ * @see Categories
  * 
  */
 

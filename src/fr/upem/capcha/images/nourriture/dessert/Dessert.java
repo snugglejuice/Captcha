@@ -9,6 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Dessert class (subcategory)
+ * 
+ * Inherits Nourriture
+ * @see Categories
+ */
 public class Dessert extends Nourriture implements Images{
 	public Dessert() {
 		super();

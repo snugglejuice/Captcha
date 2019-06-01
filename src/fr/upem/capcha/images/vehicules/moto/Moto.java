@@ -9,6 +9,13 @@ import fr.upem.capcha.images.*;
  *
  */
 
+/**
+ * Moto Class (subcategory)
+ * 
+ * Inherits Vehicules
+ * @see Categories
+ * 
+ */
 public class Moto extends Vehicules implements Images{
 	public Moto() {
 		super();
