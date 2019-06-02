@@ -20,7 +20,12 @@ import fr.upem.capcha.images.Images;
 /**
  * Nourriture Class ( Categories )
  * 
+<<<<<<< HEAD
  * 
+=======
+ * Inherits Categories
+ * @see Categories
+>>>>>>> dev-categories
  * 
  */
 

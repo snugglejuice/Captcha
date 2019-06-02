@@ -9,6 +9,16 @@ import fr.upem.capcha.images.*;
  *
  */
 
+<<<<<<< HEAD
+=======
+
+/**
+ * Soupe class (subcategory)
+ * 
+ * Inherits Nourriture
+ * @see Categories
+ */
+>>>>>>> dev-categories
 public class Soupe extends Nourriture implements Images{
 
 	public Soupe() {

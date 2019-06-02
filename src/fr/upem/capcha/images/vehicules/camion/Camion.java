@@ -9,6 +9,16 @@ import fr.upem.capcha.images.*;
  *
  */
 
+<<<<<<< HEAD
+=======
+/**
+ * Camion Class (subcategory)
+ * 
+ * Inherits Vehicules
+ * @see Categories
+ * 
+ */
+>>>>>>> dev-categories
 public class Camion extends Vehicules implements Images{
 	
 	public Camion() {

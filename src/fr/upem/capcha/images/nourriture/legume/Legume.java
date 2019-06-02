@@ -9,6 +9,15 @@ import fr.upem.capcha.images.*;
  *
  */
 
+<<<<<<< HEAD
+=======
+/**
+ * Legume class (subcategory)
+ * 
+ * Inherits Nourriture
+ * @see Categories
+ */
+>>>>>>> dev-categories
 public class Legume extends Nourriture implements Images{
 	
 	public Legume() {

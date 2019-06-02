@@ -17,10 +17,29 @@ import java.lang.reflect.*;
 
 public class Categories implements Images {  
 	
+<<<<<<< HEAD
 	
 	private List<URL> photoList;
+=======
+	/**
+	 * A list of the URL of the photos
+	 */
+	private List<URL> photoList;
+	/**
+	 * A list of Categories
+	 */
+>>>>>>> dev-categories
 	private List<Categories> categoryList;
+	/**
+	 * A list of the category's name, in the form of String
+	 */
 	private List<String> categoryNameList;
+<<<<<<< HEAD
+=======
+	/**
+	 * A boolean which says if a category has subdirectories
+	 */
+>>>>>>> dev-categories
 	private boolean hasSubdirectories;
 	
 	/**
@@ -30,14 +49,30 @@ public class Categories implements Images {
 		this.fillCategoryNameList();
 	}
 	
+	/**
+	 * Return a list of category's name
+	 * @return the list of String of category's name
+	 */
 	public List<String> getCategoryNameList() {
 		return categoryNameList;
 	}
 	
+	/**
+	 * Return a list of categories
+	 * @return a list of Categories of the categories
+	 */
 	public List<Categories> getCategoryList() {
 		return categoryList;
 	}
 	
+	public boolean hasSubdirectories() {
+		return hasSubdirectories;
+	}
+	
+	/**
+	 * To check if the category has subdirectories
+	 * @return true if the category has subdirectories, else false
+	 */
 	public boolean hasSubdirectories() {
 		return hasSubdirectories;
 	}
@@ -65,8 +100,13 @@ public class Categories implements Images {
 	 * 
 	 */
 	private void fillCategoryNameList() {
+<<<<<<< HEAD
 		File directory = new File(this.getClass().getResource("").getPath());
         System.out.println(directory);
+=======
+		File directory = new File(this.getClass().getResource(".").getPath());
+        //get all the files from a directory
+>>>>>>> dev-categories
         File[] fList = directory.listFiles();
         if (fList == null) {
         	System.out.println("PROBLEME : " + this.getClass().getResource("").getPath());
@@ -90,7 +130,11 @@ public class Categories implements Images {
 			this.photoList = new ArrayList<URL>();
 			String cap = this.getClass().getSimpleName().substring(0, 1).toLowerCase() + this.getClass().getSimpleName().substring(1);
 			for (int i = 1; i < 6; i++ ) {
+<<<<<<< HEAD
 				photoList.add(this.getClass().getResource(cap + i + ".jpg"));
+=======
+				photoList.add(this.getClass().getResource("./" + cap + i + ".jpg"));
+>>>>>>> dev-categories
 			}	
 			
 		}
@@ -119,7 +163,7 @@ public class Categories implements Images {
 		    }
 		    catch (InstantiationException e)
 		    {
-		      // La classe est abstract ou est une interface ou n'a pas de constructeur accessible sans paramètre
+		      // La classe est abstract ou est une interface ou n'a pas de constructeur accessible sans paramï¿½tre
 		    }
 		    catch (IllegalAccessException e)
 		    {
@@ -142,7 +186,10 @@ public class Categories implements Images {
 		return;
 	}
 	
-	
+	/**
+	 * Return the URL of a photo selected randomly
+	 * @return the URL of a photo
+	 */
 	public URL getRandomPhotosURL() {
 		if (!hasSubdirectories) {
 			Random r = new Random();
@@ -154,6 +201,10 @@ public class Categories implements Images {
 		return categoryList.get(catNumber).getRandomPhotosURL();
 	}
 	
+	/**
+	 * Return a category selected randomly
+	 * @return a Categories category
+	 */
 	public Categories getRandomCategory() {
 		Random rand = new Random();
 		int catNumber = rand.nextInt(categoryList.size());
@@ -161,8 +212,11 @@ public class Categories implements Images {
 	}
 	
 	/**
-	 *  Return a URL List of the photo path
+	 *  Return an URL List of the photo path
 	 *  /!\ some elements could be null because of the photoList
+	 *  @param n
+	 *  	the number of photo URL wanted in the list
+	 *  @return an URL list (size n) of the photo path
 	 */
 	public List<URL> getRandomPhotosURL(int n) {
 		List<URL> selectedPhoto = new ArrayList<URL>();
@@ -176,10 +230,20 @@ public class Categories implements Images {
 		return selectedPhoto;
 	}
 	
+	/**
+	 * Return an URL list
+	 * @return an URL list of photos
+	 */
 	public List<URL> getPhotos() {
 		return photoList;
 	}
 	
+	/**
+	 * Check if the img matched the photo or the category
+	 * @param img
+	 * 
+	 * @return true is img matches the photo or the category, else false
+	 */
 	public boolean isPhotoCorrect(URL img) {
 		if (!hasSubdirectories) {
 			for (URL photo : photoList) {
@@ -205,6 +269,12 @@ public class Categories implements Images {
 		return false;
 	}
 	
+<<<<<<< HEAD
+=======
+	/**
+	 * @return the name of the class
+	 */
+>>>>>>> dev-categories
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
