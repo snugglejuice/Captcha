@@ -9,15 +9,12 @@ import fr.upem.capcha.images.*;
  *
  */
 
-<<<<<<< HEAD
-=======
 /**
  * Sandwich class (subcategory)
  * 
  * Inherits Nourriture
  * @see Categories
  */
->>>>>>> dev-categories
 public class Sandwich extends Nourriture implements Images{
 	
 	public Sandwich() {

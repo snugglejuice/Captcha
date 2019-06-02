@@ -1,10 +1,7 @@
 fr.upem.capcha.images
-<<<<<<< HEAD
-=======
 fr.upem.capcha.images.batiments
 fr.upem.capcha.images.batiments.eglise
 fr.upem.capcha.images.batiments.magasin
->>>>>>> dev-categories
 fr.upem.capcha.images.nourriture
 fr.upem.capcha.images.nourriture.dessert
 fr.upem.capcha.images.nourriture.fruit
@@ -12,12 +9,9 @@ fr.upem.capcha.images.nourriture.legume
 fr.upem.capcha.images.nourriture.pates
 fr.upem.capcha.images.nourriture.sandwich
 fr.upem.capcha.images.nourriture.soupe
-<<<<<<< HEAD
-=======
 fr.upem.capcha.images.panneaux
 fr.upem.capcha.images.panneaux.rond
 fr.upem.capcha.images.panneaux.triangle
->>>>>>> dev-categories
 fr.upem.capcha.images.vehicules
 fr.upem.capcha.images.vehicules.camion
 fr.upem.capcha.images.vehicules.moto

@@ -1,11 +1,4 @@
 package fr.upem.capcha.images.nourriture;
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.util.List;
-import java.util.Objects;
-import java.util.ArrayList;
-import java.util.Random;
 
 import fr.upem.capcha.images.Categories;
 import fr.upem.capcha.images.Images;
@@ -20,12 +13,8 @@ import fr.upem.capcha.images.Images;
 /**
  * Nourriture Class ( Categories )
  * 
-<<<<<<< HEAD
- * 
-=======
  * Inherits Categories
  * @see Categories
->>>>>>> dev-categories
  * 
  */
 

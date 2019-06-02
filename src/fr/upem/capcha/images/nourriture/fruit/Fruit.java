@@ -8,8 +8,6 @@ import fr.upem.capcha.images.*;
  * @author SEMINEL Marion
  *
  */ 
-<<<<<<< HEAD
-=======
 
 /**
  * Fruit class (subcategory)
@@ -17,7 +15,6 @@ import fr.upem.capcha.images.*;
  * Inherits Nourriture
  * @see Categories
  */
->>>>>>> dev-categories
 public class Fruit extends Nourriture implements Images {
 		
 	public Fruit() {

@@ -17,10 +17,6 @@ import java.lang.reflect.*;
 
 public class Categories implements Images {  
 	
-<<<<<<< HEAD
-	
-	private List<URL> photoList;
-=======
 	/**
 	 * A list of the URL of the photos
 	 */
@@ -28,18 +24,14 @@ public class Categories implements Images {
 	/**
 	 * A list of Categories
 	 */
->>>>>>> dev-categories
 	private List<Categories> categoryList;
 	/**
 	 * A list of the category's name, in the form of String
 	 */
 	private List<String> categoryNameList;
-<<<<<<< HEAD
-=======
 	/**
 	 * A boolean which says if a category has subdirectories
 	 */
->>>>>>> dev-categories
 	private boolean hasSubdirectories;
 	
 	/**
@@ -63,10 +55,6 @@ public class Categories implements Images {
 	 */
 	public List<Categories> getCategoryList() {
 		return categoryList;
-	}
-	
-	public boolean hasSubdirectories() {
-		return hasSubdirectories;
 	}
 	
 	/**
@@ -100,18 +88,9 @@ public class Categories implements Images {
 	 * 
 	 */
 	private void fillCategoryNameList() {
-<<<<<<< HEAD
-		File directory = new File(this.getClass().getResource("").getPath());
-        System.out.println(directory);
-=======
 		File directory = new File(this.getClass().getResource(".").getPath());
         //get all the files from a directory
->>>>>>> dev-categories
         File[] fList = directory.listFiles();
-        if (fList == null) {
-        	System.out.println("PROBLEME : " + this.getClass().getResource("").getPath());
-        	return;
-        }
         this.categoryNameList = new ArrayList<String>();
         for (File file : fList){
         	if (file.isDirectory()) {
@@ -130,11 +109,7 @@ public class Categories implements Images {
 			this.photoList = new ArrayList<URL>();
 			String cap = this.getClass().getSimpleName().substring(0, 1).toLowerCase() + this.getClass().getSimpleName().substring(1);
 			for (int i = 1; i < 6; i++ ) {
-<<<<<<< HEAD
-				photoList.add(this.getClass().getResource(cap + i + ".jpg"));
-=======
 				photoList.add(this.getClass().getResource("./" + cap + i + ".jpg"));
->>>>>>> dev-categories
 			}	
 			
 		}
@@ -269,12 +244,9 @@ public class Categories implements Images {
 		return false;
 	}
 	
-<<<<<<< HEAD
-=======
 	/**
 	 * @return the name of the class
 	 */
->>>>>>> dev-categories
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
