@@ -65,9 +65,13 @@ public class Categories implements Images {
 	 * 
 	 */
 	private void fillCategoryNameList() {
-		File directory = new File(this.getClass().getResource(".").getPath());
-        //get all the files from a directory
+		File directory = new File(this.getClass().getResource("").getPath());
+        System.out.println(directory);
         File[] fList = directory.listFiles();
+        if (fList == null) {
+        	System.out.println("PROBLEME : " + this.getClass().getResource("").getPath());
+        	return;
+        }
         this.categoryNameList = new ArrayList<String>();
         for (File file : fList){
         	if (file.isDirectory()) {
@@ -86,7 +90,7 @@ public class Categories implements Images {
 			this.photoList = new ArrayList<URL>();
 			String cap = this.getClass().getSimpleName().substring(0, 1).toLowerCase() + this.getClass().getSimpleName().substring(1);
 			for (int i = 1; i < 6; i++ ) {
-				photoList.add(this.getClass().getResource("./" + cap + i + ".jpg"));
+				photoList.add(this.getClass().getResource(cap + i + ".jpg"));
 			}	
 			
 		}
