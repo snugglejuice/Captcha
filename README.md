@@ -8,7 +8,7 @@ java -cp src fr.upem.capcha.main.Main
 
 
 # Pour exécuter le JAR: 
-Se placer dans le dossier capcha : 
+Se placer dans le dossier captcha : 
 ```
 java -jar captcha.jar
 ```
